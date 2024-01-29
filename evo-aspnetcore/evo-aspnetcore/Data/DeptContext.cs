@@ -1,8 +1,5 @@
-﻿using EvoTest.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace EvoTest.Data
-{
     public class DeptContext : DbContext
     {
         public DeptContext(DbContextOptions<DeptContext> options) : base(options)
@@ -32,4 +29,3 @@ namespace EvoTest.Data
         }
 
     }
-}

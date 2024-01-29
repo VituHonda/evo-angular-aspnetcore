@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "l3a47iW+v2UkqvQrAY0tZYdtDTaihFCrq5XbUhfZ8mU=",
+  "Source": "evo-aspnetcore",
+  "BasePath": "_content/evo-aspnetcore",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

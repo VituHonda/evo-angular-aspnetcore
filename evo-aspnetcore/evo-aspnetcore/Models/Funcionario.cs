@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EvoTest.Models
-{
     public class Funcionario
     {
         [Key]
@@ -22,4 +20,3 @@ namespace EvoTest.Models
             this.DepartamentoId = departamentoId;
         }
     }
-}

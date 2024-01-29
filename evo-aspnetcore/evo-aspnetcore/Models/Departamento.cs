@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EvoTest.Models
-{
     public class Departamento
     {
         [Key]
@@ -18,4 +16,4 @@ namespace EvoTest.Models
             this.Sigla = sigla;
         }
     }
-}
+
