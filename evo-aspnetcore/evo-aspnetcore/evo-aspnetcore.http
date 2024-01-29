@@ -1,0 +1,6 @@
+@evo_aspnetcore_HostAddress = http://localhost:5039
+
+GET {{evo_aspnetcore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
