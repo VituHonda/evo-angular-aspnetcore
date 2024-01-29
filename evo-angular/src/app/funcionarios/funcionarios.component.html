@@ -1,0 +1,39 @@
+<div class="m-5">
+    <h1>Departamento: </h1>
+  </div>
+  
+  <div class="m-5">
+    <button type="button" class="btn btn-primary">Cadastrar Funcionario</button>
+  </div>
+  
+  <div class="ms-5 col-9">
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">NOME</th>
+          <th scope="col">FOTO</th>
+          <th scope="col">RG</th>
+          <th scope="col">ID DEPARTAMENTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let func of funcionarios">
+          <td>{{func.id}}</td>
+          <td>{{func.nome}}</td>
+          <td>{{func.foto}}</td>
+          <td>{{func.rg}}</td>
+          <td>{{func.departamentoId}}</td>
+          <td>
+            <div>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Excluir</button>
+            </div>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
