@@ -1,0 +1,49 @@
+<!-- DEPT SELECIONADO -->
+<div *ngIf="departamentoSelecionado">
+    <div class="m-5">
+      <h1>Departamento: {{departamentoSelecionado.nome}}</h1>
+    </div>
+  
+    <div class="btn btn-default" (click)="voltar()">Voltar</div>
+  </div>
+  
+  <!-- DEPT NAO SELECIONADO -->
+  <div *ngIf="!departamentoSelecionado">
+    <div class="m-5">
+      <h1>Departamentos</h1>
+    </div>
+  
+    <div class="m-5">
+      <button type="button" class="btn btn-primary">Cadastrar Departamento</button>
+    </div>
+  
+    <div class="ms-5 col-9">
+  
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Visualizar</th>
+            <th scope="col">ID</th>
+            <th scope="col">NOME</th>
+            <th scope="col">SIGLA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dept of departamentos" (click)="selecionaDepartamento(dept)">
+            <td><button type="button" class="btn btn-secondary">Detalhes</button></td>
+            <td>{{dept.id}}</td>
+            <td>{{dept.nome}}</td>
+            <td>{{dept.sigla}}</td>
+            <td>
+              <div>
+                <button type="button" class="btn btn-primary" >Editar</button>
+                <button type="button" class="btn btn-danger">Excluir</button>
+              </div>
+            </td>
+  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
