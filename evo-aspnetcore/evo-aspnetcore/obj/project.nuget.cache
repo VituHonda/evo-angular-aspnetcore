@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IqR7l0dAN/777hcsrRN65svKDvBa5b2TomN5fJJwYQVuJY0GH6IWB5XhI7ABj0lPW/m4Th0T5F1jzHRFDpwdDw==",
+  "dgSpecHash": "s2YiYz73KdnzrS5gtVcr6T9UrN6eTIhIDnUVl0PvS4drV9t8ovJuwn0pC/OWfIwSlysxg7RYGHnQDSgKfC5hvQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\viuta\\source\\repos\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj",
+  "projectFilePath": "C:\\Users\\viuta\\OneDrive\\Área de Trabalho\\evo-angular-aspnetcore\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\viuta\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\viuta\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

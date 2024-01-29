@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\viuta\\source\\repos\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj": {}
+    "C:\\Users\\viuta\\OneDrive\\Área de Trabalho\\evo-angular-aspnetcore\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\viuta\\source\\repos\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj": {
+    "C:\\Users\\viuta\\OneDrive\\Área de Trabalho\\evo-angular-aspnetcore\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\viuta\\source\\repos\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj",
+        "projectUniqueName": "C:\\Users\\viuta\\OneDrive\\Área de Trabalho\\evo-angular-aspnetcore\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj",
         "projectName": "evo-aspnetcore",
-        "projectPath": "C:\\Users\\viuta\\source\\repos\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj",
+        "projectPath": "C:\\Users\\viuta\\OneDrive\\Área de Trabalho\\evo-angular-aspnetcore\\evo-aspnetcore\\evo-aspnetcore\\evo-aspnetcore.csproj",
         "packagesPath": "C:\\Users\\viuta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\viuta\\source\\repos\\evo-aspnetcore\\evo-aspnetcore\\obj\\",
+        "outputPath": "C:\\Users\\viuta\\OneDrive\\Área de Trabalho\\evo-angular-aspnetcore\\evo-aspnetcore\\evo-aspnetcore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\viuta\\AppData\\Roaming\\NuGet\\NuGet.Config",
