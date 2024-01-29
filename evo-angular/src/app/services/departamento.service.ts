@@ -29,8 +29,8 @@ export class DepartamentoService {
   }
 
   // UPDATE
-  putDept(id: number, departamento: departamentoInterface) {
-    return this.http.put(`${this.url}/${id}`, departamento)
+  putDept(departamento: departamentoInterface) {
+    return this.http.put(`${this.url}/${departamento.id}`, departamento)
   }
 
   // DELETE

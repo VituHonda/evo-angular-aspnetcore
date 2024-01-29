@@ -1,49 +1,121 @@
-<!-- DEPT SELECIONADO -->
-<div *ngIf="departamentoSelecionado">
-    <div class="m-5">
-      <h1>Departamento: {{departamentoSelecionado.nome}}</h1>
-    </div>
-  
-    <div class="btn btn-default" (click)="voltar()">Voltar</div>
+ <!-- indice 0 - tela principal -->
+ <div *ngIf="indice == 0">
+   <div class="m-5">
+     <h1>Departamentos</h1>
+   </div>
+
+   <div class="m-5">
+     <button type="button" class="btn btn-primary" (click)="cadastrarDepartamento()">Cadastrar Departamento</button>
+   </div>
+
+   <div class="ms-5 col-9">
+
+     <table class="table table-hover">
+       <thead>
+         <tr>
+           <th scope="col">Visualizar</th>
+           <th scope="col">ID</th>
+           <th scope="col">NOME</th>
+           <th scope="col">SIGLA</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let dept of departamentos" (click)="selecionaDepartamento(dept)">
+           <td><button type="button" class="btn btn-secondary">Detalhes</button></td>
+           <td>{{dept.id}}</td>
+           <td>{{dept.nome}}</td>
+           <td>{{dept.sigla}}</td>
+           <td>
+             <div class="d-flex flex-row">
+               <div class="ms-3">
+                 <button type="button" class="btn btn-primary" (click)="editarDepartamento(dept)">Editar</button>
+               </div>
+               <div class="ms-3">
+                 <button type="button" class="btn btn-danger" (click)="openModal(template, dept)">Excluir</button>
+               </div>
+             </div>
+           </td>
+
+         </tr>
+       </tbody>
+     </table>
+   </div>
+ </div>
+
+ <!-- indice 1 - ver funcionarios do departamento -->
+ <div *ngIf="indice == 1">
+   <div class="m-5">
+     <h1>Departamento: {{departamentoSelecionado.nome}}</h1>
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
+ </div>
+
+ <!-- indice 2 - cadastrar departamento -->
+ <div *ngIf="indice == 2">
+
+  <div class="m-5">
+    <h1>Cadastrando </h1>
   </div>
-  
-  <!-- DEPT NAO SELECIONADO -->
-  <div *ngIf="!departamentoSelecionado">
-    <div class="m-5">
-      <h1>Departamentos</h1>
-    </div>
-  
-    <div class="m-5">
-      <button type="button" class="btn btn-primary">Cadastrar Departamento</button>
-    </div>
-  
-    <div class="ms-5 col-9">
-  
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Visualizar</th>
-            <th scope="col">ID</th>
-            <th scope="col">NOME</th>
-            <th scope="col">SIGLA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let dept of departamentos" (click)="selecionaDepartamento(dept)">
-            <td><button type="button" class="btn btn-secondary">Detalhes</button></td>
-            <td>{{dept.id}}</td>
-            <td>{{dept.nome}}</td>
-            <td>{{dept.sigla}}</td>
-            <td>
-              <div>
-                <button type="button" class="btn btn-primary" >Editar</button>
-                <button type="button" class="btn btn-danger">Excluir</button>
-              </div>
-            </td>
-  
-          </tr>
-        </tbody>
-      </table>
-    </div>
+
+  <div class="m-5 ">
+    <form [formGroup]="departamentoForm" (submit)="salvarCadastro(departamentoSelecionado)">
+      <div class="mb-3 col-9">
+        <label class="form-label">Nome</label>
+        <input type="text" formControlName="nome" class="form-control">
+      </div>
+      <div class="mb-3 col-9">
+        <label class="form-label">Sigla</label>
+        <input type="text" formControlName="sigla" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
   </div>
-  
+
+  <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
+</div>
+
+
+ <!-- indice 3 - editar departamento -->
+ <div *ngIf="indice == 3">
+
+   <div class="m-5">
+     <h1>Editando: {{departamentoSelecionado.nome}} </h1>
+   </div>
+
+   <div class="m-5 ">
+     <form [formGroup]="departamentoForm" (submit)="salvarEdicao(departamentoSelecionado)">
+       <div class="mb-3 col-9">
+         <label class="form-label">Nome</label>
+         <input type="text" formControlName="nome" class="form-control">
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">Sigla</label>
+         <input type="text" formControlName="sigla" class="form-control">
+       </div>
+       <button type="submit" class="btn btn-success">Salvar</button>
+     </form>
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
+ </div>
+
+ <!-- template -->
+ <ng-template #template>
+
+   <div class="modal-body">
+     Você tem certeza que deseja excluir?
+   </div>
+
+   <div class="modal-footer">
+
+    <button type="button" class="btn btn-danger pull-left" aria-label="Close" (click)="excluirDepartamento(departamentoSelecionado)">
+      EXCLUIR
+    </button>
+
+     <button type="button" class="btn pull-right" aria-label="Close" (click)="fecharModal()">
+       FECHAR
+     </button>
+   </div>
+
+ </ng-template>
