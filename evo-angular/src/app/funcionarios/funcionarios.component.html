@@ -72,7 +72,7 @@
         <label class="form-label">ID Departamento</label>
         <input type="text" formControlName="departamentoId" class="form-control">
       </div>
-      <button type="submit" class="btn btn-success">Salvar</button>
+      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
     </form>
   </div>
 
@@ -104,7 +104,7 @@
         <label class="form-label">ID Departamento</label>
         <input type="text" formControlName="departamentoId" class="form-control">
       </div>
-      <button type="submit" class="btn btn-success">Salvar</button>
+      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
     </form>
   </div>
 

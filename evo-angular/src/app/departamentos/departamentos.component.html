@@ -134,12 +134,13 @@
          <label class="form-label">Sigla</label>
          <input type="text" formControlName="sigla" class="form-control">
        </div>
-       <button type="submit" class="btn btn-success">Salvar</button>
+       <button type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid">Salvar</button>
      </form>
    </div>
 
    <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
  </div>
+
  <!-- indice 5 - cadastrar funcionario -->
  <div *ngIf="indice == 5">
 
@@ -166,7 +167,7 @@
         <label class="form-label">ID Departamento</label>
         <input type="text" formControlName="departamentoId" class="form-control">
       </div>
-      <button type="submit" class="btn btn-success">Salvar</button>
+      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
     </form>
 
   </div>
@@ -201,7 +202,7 @@
         <label class="form-label">ID Departamento</label>
         <input type="text" formControlName="departamentoId" class="form-control">
       </div>
-      <button type="submit" class="btn btn-success">Salvar</button>
+      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
     </form>
 
   </div>
