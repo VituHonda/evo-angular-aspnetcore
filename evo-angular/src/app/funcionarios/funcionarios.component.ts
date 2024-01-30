@@ -1,6 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { funcionarioInterface } from '../interfaces/funcionarioInterface';
 import { FuncionarioService } from '../services/funcionario.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';

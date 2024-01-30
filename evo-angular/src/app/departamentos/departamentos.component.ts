@@ -1,12 +1,11 @@
 import { Component, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DepartamentoService } from '../services/departamento.service';
-import { departamentoInterface } from '../interfaces/departamentoInterface';
-import { funcionarioInterface } from '../interfaces/funcionarioInterface';
 import { FuncionarioService } from '../services/funcionario.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { departamento } from '../models/departamento'
+import { funcionario } from '../models/funcionario';
 
 @Component({
   selector: 'app-departamentos',
@@ -25,11 +24,11 @@ export class DepartamentosComponent {
   public errorMessage!: string;
   public indice: number = 0;
 
-  public departamentos: departamentoInterface[] = [];
-  public novoDepartamento!: departamentoInterface
-  public departamentoSelecionado!: departamentoInterface;
+  public departamentos: departamento[] = [];
+  public novoDepartamento!: departamento
+  public departamentoSelecionado!: departamento;
 
-  public funcionarios: funcionarioInterface[] = [];
+  public funcionarios: funcionario[] = [];
 
 
 
@@ -58,7 +57,7 @@ export class DepartamentosComponent {
     });
   }
 
-  selecionaDepartamento(departamento: departamentoInterface) {
+  detalhesDepartamento(departamento: departamento) {
     this.indice = 1;
     this.departamentoSelecionado = departamento;
 
@@ -77,7 +76,7 @@ export class DepartamentosComponent {
     this.departamentoSelecionado = new departamento();
   }
 
-  salvarCadastro(departamento: departamentoInterface) {
+  salvarCadastro(departamento: departamento) {
     console.log(this.departamentoForm.value);
     departamento = this.departamentoForm.value;
     this.data_service.postDept(departamento).subscribe(
@@ -92,13 +91,13 @@ export class DepartamentosComponent {
     this.indice = 0
   }
 
-  editarDepartamento(departamento: departamentoInterface) {
+  editarDepartamento(departamento: departamento) {
     this.indice = 3;
     this.departamentoSelecionado = departamento;
     this.departamentoForm.patchValue(departamento);
   }
 
-  salvarEdicao(departamento: departamentoInterface) {
+  salvarEdicao(departamento: departamento) {
     var saveId = departamento.id;
     departamento = this.departamentoForm.value;
     departamento.id = saveId;
@@ -115,14 +114,14 @@ export class DepartamentosComponent {
     this.indice = 0
   }
 
-  openModal(template: TemplateRef<any>, departamento: departamentoInterface) {
+  openModal(template: TemplateRef<any>, departamento: departamento) {
 
     this.modalRef = this.modalService.show(template);
     this.departamentoSelecionado = departamento;
     this.indice = 0;
   }
 
-  excluirDepartamento(departamento: departamentoInterface) {
+  excluirDepartamento(departamento: departamento) {
     this.indice = 0
     this.modalService.hide();
     this.data_service.deleteDept(departamento.id).subscribe(
