@@ -6,7 +6,7 @@ import { funcionarioInterface } from '../interfaces/funcionarioInterface';
 import { FuncionarioService } from '../services/funcionario.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import {departamento} from '../models/departamento'
+import { departamento } from '../models/departamento'
 
 @Component({
   selector: 'app-departamentos',
@@ -31,7 +31,7 @@ export class DepartamentosComponent {
 
   public funcionarios: funcionarioInterface[] = [];
 
-  
+
 
   constructor(private data_service: DepartamentoService,
     private data_service2: FuncionarioService,
@@ -88,7 +88,7 @@ export class DepartamentosComponent {
         console.error(error);
       }
     )
-    
+
     this.indice = 0
   }
 
@@ -111,7 +111,7 @@ export class DepartamentosComponent {
         console.error(error);
       }
     )
-    
+
     this.indice = 0
   }
 
@@ -155,7 +155,6 @@ export class DepartamentosComponent {
         this.errorMessage = error;
       },
     });
-
   }
 
 }

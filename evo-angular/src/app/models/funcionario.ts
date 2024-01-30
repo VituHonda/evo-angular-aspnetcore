@@ -1,4 +1,4 @@
-import { departamentoInterface } from "../interfaces/departamentoInterface";
+import { departamento } from "./departamento";
 
 export class funcionario {
 
@@ -17,6 +17,6 @@ export class funcionario {
     nome: string;
     foto: string;
     rg: string;
-    departamento: departamentoInterface | null;
+    departamento: departamento | null;
     departamentoId: number;
   }
