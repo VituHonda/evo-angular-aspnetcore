@@ -1,8 +1,8 @@
- <!-- indice 0 - tela principal -->
-<div *ngIf="indice == 0">
+ <!-- indice 4 - tela principal -->
+<div *ngIf="indice == 4">
 
   <div class="m-5">
-    <h1>Funcionario: </h1>
+    <h1>Funcionarios </h1>
   </div>
   
   <div class="m-5">
@@ -25,7 +25,9 @@
         <tr *ngFor="let func of funcionarios">
           <td>{{func.id}}</td>
           <td>{{func.nome}}</td>
-          <td>{{func.foto}}</td>
+          <td>
+            <a href="{{func.foto}}" target="_blank">{{func.foto}}</a>
+          </td>
           <td>{{func.rg}}</td>
           <td>{{func.departamentoId}}</td>
           <td>
@@ -38,17 +40,15 @@
               </div>
             </div>
           </td>
-  
         </tr>
       </tbody>
     </table>
-  
   </div> 
 
 </div>
 
-<!-- indice 2 - cadastrar funcionario -->
-<div *ngIf="indice == 2">
+<!-- indice 5 - cadastrar funcionario -->
+<div *ngIf="indice == 5">
 
   <div class="m-5">
     <h1>Cadastro funcionário</h1>
@@ -79,8 +79,8 @@
   <div class="ms-5 btn btn-primary" (click)="voltar()" >Voltar</div>
 </div>
 
- <!-- indice 3 - editar departamento -->
- <div *ngIf="indice == 3">
+ <!-- indice 6 - editar departamento -->
+ <div *ngIf="indice == 6">
 
   <div class="m-5">
     <h1>Editando: {{funcionarioSelecionado.nome}} </h1>

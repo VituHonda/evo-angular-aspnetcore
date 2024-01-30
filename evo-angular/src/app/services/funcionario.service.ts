@@ -22,8 +22,8 @@ export class FuncionarioService {
   }
 
   // READ BY DEPT
-  getFuncByDeptId(id: number): Observable<funcionario> {
-    return this.http.get<funcionario>(`${this.url}/ByDepartment/${id}`)
+  getFuncByDeptId(id: number): Observable<funcionario[]> {
+    return this.http.get<funcionario[]>(`${this.url}/ByDepartment/${id}`)
   }
 
   // CREATE

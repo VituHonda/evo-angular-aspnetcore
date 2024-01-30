@@ -1,4 +1,4 @@
-import { funcionarioInterface } from "../interfaces/funcionarioInterface";
+import { funcionario } from "./funcionario";
 
 export class departamento {
 
@@ -12,5 +12,5 @@ export class departamento {
     id: number;
     nome: string;
     sigla: string;
-    funcionarios: funcionarioInterface[];
+    funcionarios: funcionario[];
   }

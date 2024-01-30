@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { funcionario } from '../models/funcionario';
 
+
 @Component({
   selector: 'app-funcionario',
   standalone: true,
@@ -22,7 +23,7 @@ export class FuncionariosComponent {
   public novoFuncionario!: funcionario;
 
   public errorMessage!: string;
-  public indice: number = 0;
+  public indice: number = 4;
 
   public funcionarioSelecionado!: funcionario;
 
@@ -53,7 +54,8 @@ export class FuncionariosComponent {
   }
 
   cadastrarFuncionario() {
-    this.indice = 2;
+    this.indice = 5;
+    this.funcionarioForm.reset();
     this.funcionarioSelecionado = new funcionario();
   }
 
@@ -68,11 +70,11 @@ export class FuncionariosComponent {
         console.error(error);
       }
     )
-    this.indice = 0
+    this.indice = 4
   }
 
   editarFuncionario(funcionario: funcionario) {
-    this.indice = 3;
+    this.indice = 6;
     this.funcionarioSelecionado = funcionario;
     this.funcionarioForm.patchValue(funcionario);
   }
@@ -91,18 +93,18 @@ export class FuncionariosComponent {
       }
     )
 
-    this.indice = 0
+    this.indice = 4
   }
 
   openModal(template: TemplateRef<any>, funcionario: funcionario) {
 
     this.modalRef = this.modalService.show(template);
     this.funcionarioSelecionado = funcionario;
-    this.indice = 0;
+    this.indice = 4;
   }
 
   excluirFuncionario(funcionario: funcionario) {
-    this.indice = 0
+    this.indice = 4
     this.modalService.hide();
     this.data_service.deleteFunc(funcionario.id).subscribe(
       () => {
@@ -115,12 +117,12 @@ export class FuncionariosComponent {
   }
 
   fecharModal() {
-    this.indice = 0
+    this.indice = 4
     this.modalService.hide();
   }
 
   voltar() {
-    this.indice = 0
+    this.indice = 4
     this.funcionarioSelecionado = this.novoFuncionario;
   }
 
