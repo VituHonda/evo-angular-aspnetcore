@@ -1,0 +1,253 @@
+ <!-- indice 0 - tela principal -->
+ <div *ngIf="indice == 0">
+   <div class="m-5">
+     <h1>Departamentos</h1>
+   </div>
+
+   <div class="m-5">
+     <button type="button" class="btn btn-primary" (click)="cadastrarDepartamento()">Cadastrar Departamento</button>
+   </div>
+
+   <div class="ms-5 col-9">
+
+     <table class="table table-hover">
+       <thead>
+         <tr>
+           <th scope="col">Visualizar</th>
+           <th scope="col">ID</th>
+           <th scope="col">NOME</th>
+           <th scope="col">SIGLA</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let dept of departamentos">
+           <td><button type="button" class="btn btn-secondary" (click)="detalhesDepartamento(dept)">Detalhes</button>
+           </td>
+           <td>{{dept.id}}</td>
+           <td>{{dept.nome}}</td>
+           <td>{{dept.sigla}}</td>
+           <td>
+             <div class="d-flex flex-row">
+               <div class="ms-3">
+                 <button type="button" class="btn btn-primary" (click)="editarDepartamento(dept)">Editar</button>
+               </div>
+               <div class="ms-3">
+                 <button type="button" class="btn btn-danger" (click)="openModal(template, dept)">Excluir</button>
+               </div>
+             </div>
+           </td>
+
+         </tr>
+       </tbody>
+     </table>
+   </div>
+ </div>
+
+ <!-- indice 1 - ver funcionarios do departamento -->
+ <div *ngIf="indice == 1">
+   <div class="m-5">
+     <h1>Lista de Funcionario do Departamento: {{departamentoSelecionado.nome}}</h1>
+   </div>
+
+   <div class="m-5">
+     <button type="button" class="btn btn-primary" (click)="cadastrarFuncionario()">Cadastrar Funcionario</button>
+   </div>
+
+   <div class="ms-5 col-9">
+
+     <table class="table table-hover">
+       <thead>
+         <tr>
+           <th scope="col">ID</th>
+           <th scope="col">NOME</th>
+           <th scope="col">FOTO</th>
+           <th scope="col">RG</th>
+           <th scope="col">ID DEPARTAMENTO</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let func of funcionarios" (click)="selecionaFuncionario(func)">
+           <td>{{func.id}}</td>
+           <td>{{func.nome}}</td>
+           <td>
+             <a href="{{func.foto}}" target="_blank">{{func.foto}}</a>
+           </td>
+           <td>{{func.rg}}</td>
+           <td>{{func.departamentoId}}</td>
+           <td>
+             <div class="d-flex flex-row">
+               <div class="ms-3">
+                 <button type="button" class="btn btn-primary" (click)="editarFuncionario(func)">Editar</button>
+               </div>
+               <div class="ms-3">
+                 <button type="button" class="btn btn-danger"
+                   (click)="openModalFunc(templateFunc, func)">Excluir</button>
+               </div>
+             </div>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
+ </div>
+
+ <!-- indice 2 - cadastrar departamento -->
+ <div *ngIf="indice == 2">
+
+   <div class="m-5">
+     <h1>Cadastro departamento</h1>
+   </div>
+
+   <div class="m-5 ">
+     <form [formGroup]="departamentoForm" (submit)="salvarCadastro(departamentoSelecionado)">
+       <div class="mb-3 col-9">
+         <label class="form-label">Nome</label>
+         <input type="text" formControlName="nome" class="form-control"> 
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">Sigla</label>
+         <input type="text" formControlName="sigla" class="form-control">
+       </div>
+       <button type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid">Salvar</button>
+     </form>
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
+ </div>
+
+ <!-- indice 3 - editar departamento -->
+ <div *ngIf="indice == 3">
+
+   <div class="m-5">
+     <h1>Editando: {{departamentoSelecionado.nome}} </h1>
+   </div>
+
+   <div class="m-5 ">
+     <form [formGroup]="departamentoForm" (submit)="salvarEdicao(departamentoSelecionado)">
+       <div class="mb-3 col-9">
+         <label class="form-label">Nome</label>
+         <input type="text" formControlName="nome" class="form-control">
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">Sigla</label>
+         <input type="text" formControlName="sigla" class="form-control">
+       </div>
+       <button type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid">Salvar</button>
+     </form>
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
+ </div>
+
+ <!-- indice 5 - cadastrar funcionario -->
+ <div *ngIf="indice == 5">
+
+  <div class="m-5">
+    <h1>Cadastro funcionário</h1>
+  </div>
+
+  <div class="m-5 ">
+
+    <form [formGroup]="funcionarioForm" (submit)="salvarCadastroFunc(funcionarioSelecionado)">
+      <div class="mb-3 col-9">
+        <label class="form-label">Nome</label>
+        <input type="text" formControlName="nome" class="form-control">
+      </div>
+      <div class="mb-3 col-9">
+        <label class="form-label">Foto</label>
+        <input type="text" formControlName="foto" class="form-control">
+      </div>
+      <div class="mb-3 col-9">
+        <label class="form-label">RG</label>
+        <input type="text" formControlName="rg" class="form-control">
+      </div>
+      <div class="mb-3 col-9" hidden>
+        <label class="form-label">ID Departamento</label>
+        <input type="text" formControlName="departamentoId" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
+    </form>
+
+  </div>
+
+  <div class="ms-5 btn btn-primary" (click)="voltar2()" >Voltar</div>
+
+ </div>
+
+ <!-- indice 6 - editar funcionario -->
+ <div *ngIf="indice == 6">
+
+  <div class="m-5">
+    <h1>Editar funcionário</h1>
+  </div>
+
+  <div class="m-5 ">
+
+    <form [formGroup]="funcionarioForm" (submit)="salvarEdicaoFunc(funcionarioSelecionado)">
+      <div class="mb-3 col-9">
+        <label class="form-label">Nome</label>
+        <input type="text" formControlName="nome" class="form-control">
+      </div>
+      <div class="mb-3 col-9">
+        <label class="form-label">Foto</label>
+        <input type="text" formControlName="foto" class="form-control">
+      </div>
+      <div class="mb-3 col-9">
+        <label class="form-label">RG</label>
+        <input type="text" formControlName="rg" class="form-control">
+      </div>
+      <div class="mb-3 col-9">
+        <label class="form-label">ID Departamento</label>
+        <input type="text" formControlName="departamentoId" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
+    </form>
+
+  </div>
+
+  <div class="ms-5 btn btn-primary" (click)="voltar2()" >Voltar</div>
+
+ </div>
+
+ <!-- template excluir departamento -->
+ <ng-template #template>
+
+   <div class="modal-body">
+     Você tem certeza que deseja excluir o departamento?
+   </div>
+
+   <div class="modal-footer">
+
+     <button type="button" class="btn btn-danger pull-left" aria-label="Close"
+       (click)="excluirDepartamento(departamentoSelecionado)">
+       EXCLUIR
+     </button>
+
+     <button type="button" class="btn pull-right" aria-label="Close" (click)="fecharModal()">
+       FECHAR
+     </button>
+   </div>
+
+ </ng-template>
+
+ <!-- template excluir funcionario -->
+ <ng-template #templateFunc>
+
+   <div class="modal-body">
+     Você tem certeza que deseja excluir o funcionario?
+   </div>
+
+   <div class="modal-footer">
+     <button type="button" class="btn btn-danger pull-left" aria-label="Close"
+       (click)="excluirFuncionario(funcionarioSelecionado)">
+       EXCLUIR
+     </button>
+
+     <button type="button" class="btn pull-right" aria-label="Close" (click)="fecharModalFunc()">
+       FECHAR
+     </button>
+   </div>
+
+ </ng-template>
