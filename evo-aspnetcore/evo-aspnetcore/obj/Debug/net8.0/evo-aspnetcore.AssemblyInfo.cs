@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("evo-aspnetcore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5710949367405dfc9cdca40cc2119cc5ffa8bff6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1250813dd202a2eb771a35cc26bd94dce661f059")]
 [assembly: System.Reflection.AssemblyProductAttribute("evo-aspnetcore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("evo-aspnetcore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

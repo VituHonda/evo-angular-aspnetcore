@@ -59,6 +59,9 @@
       <div class="mb-3 col-9">
         <label class="form-label">Nome</label>
         <input type="text" formControlName="nome" class="form-control">
+
+        <span class="text-danger"
+         *ngIf="funcionarioForm.get('nome')?.errors && (funcionarioForm.get('nome')?.hasError('required') && funcionarioForm.touched )">Campo obrigatório!</span>
       </div>
       <div class="mb-3 col-9">
         <label class="form-label">Foto</label>
@@ -67,10 +70,16 @@
       <div class="mb-3 col-9">
         <label class="form-label">RG</label>
         <input type="text" formControlName="rg" class="form-control">
+
+        <span class="text-danger"
+         *ngIf="funcionarioForm.get('rg')?.errors && (funcionarioForm.get('rg')?.hasError('required') && funcionarioForm.touched )">Campo obrigatório!</span>
       </div>
       <div class="mb-3 col-9">
         <label class="form-label">ID Departamento</label>
         <input type="text" formControlName="departamentoId" class="form-control">
+
+        <span class="text-danger"
+         *ngIf="funcionarioForm.get('departamentoId')?.errors && (funcionarioForm.get('departamentoId')?.hasError('required') && funcionarioForm.touched )">Campo obrigatório!</span>
       </div>
       <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
     </form>
@@ -79,7 +88,7 @@
   <div class="ms-5 btn btn-primary" (click)="voltar()" >Voltar</div>
 </div>
 
- <!-- indice 6 - editar departamento -->
+ <!-- indice 6 - editar funcionario -->
  <div *ngIf="indice == 6">
 
   <div class="m-5">
@@ -91,6 +100,9 @@
       <div class="mb-3 col-9">
         <label class="form-label">Nome</label>
         <input type="text" formControlName="nome" class="form-control">
+
+        <span class="text-danger"
+         *ngIf="funcionarioForm.get('nome')?.errors && (funcionarioForm.get('nome')?.hasError('required') && funcionarioForm.touched )">Campo obrigatório!</span>
       </div>
       <div class="mb-3 col-9">
         <label class="form-label">Foto</label>
@@ -99,10 +111,16 @@
       <div class="mb-3 col-9">
         <label class="form-label">RG</label>
         <input type="text" formControlName="rg" class="form-control">
+
+        <span class="text-danger"
+         *ngIf="funcionarioForm.get('rg')?.errors && (funcionarioForm.get('rg')?.hasError('required') && funcionarioForm.touched )">Campo obrigatório!</span>
       </div>
       <div class="mb-3 col-9">
         <label class="form-label">ID Departamento</label>
         <input type="text" formControlName="departamentoId" class="form-control">
+        
+        <span class="text-danger"
+         *ngIf="funcionarioForm.get('departamentoId')?.errors && (funcionarioForm.get('departamentoId')?.hasError('required') && funcionarioForm.touched )">Campo obrigatório!</span>
       </div>
       <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
     </form>
