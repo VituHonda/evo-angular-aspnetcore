@@ -26,6 +26,7 @@ export class DepartamentosComponent {
   public departamentos: departamento[] = [];
   public departamentoSelecionado: departamento = new departamento;
   public novoDepartamento: departamento = new departamento
+  public departamentoVazio: boolean = false;
 
   public funcionarioForm!: FormGroup;
   public funcionarios: funcionario[] = [];
@@ -62,7 +63,7 @@ export class DepartamentosComponent {
       nome: ['', Validators.required],
       foto: [''],
       rg: ['', Validators.required],
-      departamentoId: ['', Validators.required]
+      departamentoId: ['']
     });
   }
 
@@ -72,8 +73,11 @@ export class DepartamentosComponent {
     this.data_service2.getFuncByDeptId(this.departamentoSelecionado.id).subscribe({
       next: (funcionario) => {
         this.funcionarios = funcionario;
+        this.departamentoVazio = false;
       },
       error: (error) => {
+        this.departamentoVazio = true;
+        this.funcionarios = [];
         this.errorMessage = error;
       },
     });
@@ -245,11 +249,12 @@ export class DepartamentosComponent {
         this.funcionarios = funcionario;
       },
       error: (error) => {
+        this.funcionarios = []
+        this.departamentoVazio = true;
         this.errorMessage = error;
       },
     });
   }
-
 
 }
 

@@ -18,5 +18,5 @@ export class funcionario {
     foto: string;
     rg: string;
     departamento: departamento | null;
-    departamentoId: number;
+    departamentoId: number | null;
   }
