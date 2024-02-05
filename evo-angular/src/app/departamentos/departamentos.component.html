@@ -45,49 +45,58 @@
 
  <!-- indice 1 - ver funcionarios do departamento -->
  <div *ngIf="indice == 1">
-   <div class="m-5">
-     <h1>Lista de Funcionario do Departamento: {{departamentoSelecionado.nome}}</h1>
-   </div>
 
-   <div class="m-5">
-     <button type="button" class="btn btn-primary" (click)="cadastrarFuncionario()">Cadastrar Funcionario</button>
-   </div>
+    <div *ngIf="departamentoVazio">
+      <div class="m-5">
+        <h1>Não há funcionários no departamento: {{departamentoSelecionado.nome}}</h1>
+      </div>
+    </div>
 
-   <div class="ms-5 col-9">
+    <div *ngIf="!departamentoVazio">
+      <div class="m-5">
+        <h1>Lista de Funcionario do Departamento: {{departamentoSelecionado.nome}}</h1>
+      </div>
+   
+      <div class="m-5">
+        <button type="button" class="btn btn-primary" (click)="cadastrarFuncionario()">Cadastrar Funcionario</button>
+      </div>
+   
+      <div class="ms-5 col-9">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">NOME</th>
+              <th scope="col">FOTO</th>
+              <th scope="col">RG</th>
+              <th scope="col">ID DEPARTAMENTO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let func of funcionarios" (click)="selecionaFuncionario(func)">
+              <td>{{func.id}}</td>
+              <td>{{func.nome}}</td>
+              <td>
+                <a href="{{func.foto}}" target="_blank">{{func.foto}}</a>
+              </td>
+              <td>{{func.rg}}</td>
+              <td>{{func.departamentoId}}</td>
+              <td>
+                <div class="d-flex flex-row">
+                  <div class="ms-3">
+                    <button type="button" class="btn btn-primary" (click)="editarFuncionario(func)">Editar</button>
+                  </div>
+                  <div class="ms-3">
+                    <button type="button" class="btn btn-danger"
+                      (click)="openModalFunc(templateFunc, func)">Excluir</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-     <table class="table table-hover">
-       <thead>
-         <tr>
-           <th scope="col">ID</th>
-           <th scope="col">NOME</th>
-           <th scope="col">FOTO</th>
-           <th scope="col">RG</th>
-           <th scope="col">ID DEPARTAMENTO</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr *ngFor="let func of funcionarios" (click)="selecionaFuncionario(func)">
-           <td>{{func.id}}</td>
-           <td>{{func.nome}}</td>
-           <td>
-             <a href="{{func.foto}}" target="_blank">{{func.foto}}</a>
-           </td>
-           <td>{{func.rg}}</td>
-           <td>{{func.departamentoId}}</td>
-           <td>
-             <div class="d-flex flex-row">
-               <div class="ms-3">
-                 <button type="button" class="btn btn-primary" (click)="editarFuncionario(func)">Editar</button>
-               </div>
-               <div class="ms-3">
-                 <button type="button" class="btn btn-danger"
-                   (click)="openModalFunc(templateFunc, func)">Excluir</button>
-               </div>
-             </div>
-           </td>
-         </tr>
-       </tbody>
-     </table>
+    </div>
    </div>
 
    <div class="ms-5 btn btn-primary" (click)="voltar()">Voltar</div>
@@ -103,12 +112,22 @@
    <div class="m-5 ">
      <form [formGroup]="departamentoForm" (submit)="salvarCadastro(departamentoSelecionado)">
        <div class="mb-3 col-9">
-         <label class="form-label">Nome</label>
-         <input type="text" formControlName="nome" class="form-control"> 
+         <label for="nomeDept" class="form-label">Nome</label>
+         <input type="text" id="nomeDept" formControlName="nome" class="form-control">
+
+         <span class="text-danger"
+           *ngIf="departamentoForm.get('nome')?.errors && (departamentoForm.get('nome')?.hasError('required') && departamentoForm.touched )">Campo
+           obrigatório!</span>
+
        </div>
        <div class="mb-3 col-9">
          <label class="form-label">Sigla</label>
          <input type="text" formControlName="sigla" class="form-control">
+
+         <span class="text-danger"
+           *ngIf="departamentoForm.get('sigla')?.errors && (departamentoForm.get('sigla')?.hasError('required') && departamentoForm.touched )">Campo
+           obrigatório!</span>
+
        </div>
        <button type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid">Salvar</button>
      </form>
@@ -129,10 +148,18 @@
        <div class="mb-3 col-9">
          <label class="form-label">Nome</label>
          <input type="text" formControlName="nome" class="form-control">
+
+         <span class="text-danger"
+           *ngIf="departamentoForm.get('nome')?.errors && (departamentoForm.get('nome')?.hasError('required') && departamentoForm.touched )">Campo
+           obrigatório!</span>
        </div>
        <div class="mb-3 col-9">
          <label class="form-label">Sigla</label>
          <input type="text" formControlName="sigla" class="form-control">
+
+         <span class="text-danger"
+           *ngIf="departamentoForm.get('sigla')?.errors && (departamentoForm.get('sigla')?.hasError('required') && departamentoForm.touched )">Campo
+           obrigatório!</span>
        </div>
        <button type="submit" class="btn btn-success" [disabled]="!departamentoForm.valid">Salvar</button>
      </form>
@@ -144,70 +171,91 @@
  <!-- indice 5 - cadastrar funcionario -->
  <div *ngIf="indice == 5">
 
-  <div class="m-5">
-    <h1>Cadastro funcionário</h1>
-  </div>
+   <div class="m-5">
+     <h1>Cadastro funcionário</h1>
+   </div>
 
-  <div class="m-5 ">
+   <div class="m-5 ">
 
-    <form [formGroup]="funcionarioForm" (submit)="salvarCadastroFunc(funcionarioSelecionado)">
-      <div class="mb-3 col-9">
-        <label class="form-label">Nome</label>
-        <input type="text" formControlName="nome" class="form-control">
-      </div>
-      <div class="mb-3 col-9">
-        <label class="form-label">Foto</label>
-        <input type="text" formControlName="foto" class="form-control">
-      </div>
-      <div class="mb-3 col-9">
-        <label class="form-label">RG</label>
-        <input type="text" formControlName="rg" class="form-control">
-      </div>
-      <div class="mb-3 col-9" hidden>
-        <label class="form-label">ID Departamento</label>
-        <input type="text" formControlName="departamentoId" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
-    </form>
+     <form [formGroup]="funcionarioForm" (submit)="salvarCadastroFunc(funcionarioSelecionado)">
+       <div class="mb-3 col-9">
+         <label class="form-label">Nome</label>
+         <input type="text" formControlName="nome" class="form-control">
 
-  </div>
+         <span class="text-danger"
+           *ngIf="funcionarioForm.get('nome')?.errors && (funcionarioForm.get('nome')?.hasError('required') && funcionarioForm.touched )">Campo
+           obrigatório!</span>
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">Foto</label>
+         <input type="text" formControlName="foto" class="form-control">
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">RG</label>
+         <input type="text" formControlName="rg" class="form-control">
 
-  <div class="ms-5 btn btn-primary" (click)="voltar2()" >Voltar</div>
+         <span class="text-danger"
+           *ngIf="funcionarioForm.get('rg')?.errors && (funcionarioForm.get('rg')?.hasError('required') && funcionarioForm.touched )">Campo
+           obrigatório!</span>
+       </div>
+       <div class="mb-3 col-9" hidden>
+         <label class="form-label">ID Departamento</label>
+         <input type="text" formControlName="departamentoId" class="form-control">
+
+       </div>
+       <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
+     </form>
+
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar2()">Voltar</div>
 
  </div>
 
  <!-- indice 6 - editar funcionario -->
  <div *ngIf="indice == 6">
 
-  <div class="m-5">
-    <h1>Editar funcionário</h1>
-  </div>
+   <div class="m-5">
+     <h1>Editar funcionário</h1>
+   </div>
 
-  <div class="m-5 ">
+   <div class="m-5 ">
 
-    <form [formGroup]="funcionarioForm" (submit)="salvarEdicaoFunc(funcionarioSelecionado)">
-      <div class="mb-3 col-9">
-        <label class="form-label">Nome</label>
-        <input type="text" formControlName="nome" class="form-control">
-      </div>
-      <div class="mb-3 col-9">
-        <label class="form-label">Foto</label>
-        <input type="text" formControlName="foto" class="form-control">
-      </div>
-      <div class="mb-3 col-9">
-        <label class="form-label">RG</label>
-        <input type="text" formControlName="rg" class="form-control">
-      </div>
-      <div class="mb-3 col-9">
-        <label class="form-label">ID Departamento</label>
-        <input type="text" formControlName="departamentoId" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
-    </form>
+     <form [formGroup]="funcionarioForm" (submit)="salvarEdicaoFunc(funcionarioSelecionado)">
+       <div class="mb-3 col-9">
+         <label class="form-label">Nome</label>
+         <input type="text" formControlName="nome" class="form-control">
 
-  </div>
+         <span class="text-danger"
+           *ngIf="funcionarioForm.get('nome')?.errors && (funcionarioForm.get('nome')?.hasError('required') && funcionarioForm.touched )">Campo
+           obrigatório!</span>
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">Foto</label>
+         <input type="text" formControlName="foto" class="form-control">
+       </div>
+       <div class="mb-3 col-9">
+         <label class="form-label">RG</label>
+         <input type="text" formControlName="rg" class="form-control">
 
-  <div class="ms-5 btn btn-primary" (click)="voltar2()" >Voltar</div>
+         <span class="text-danger"
+           *ngIf="funcionarioForm.get('rg')?.errors && (funcionarioForm.get('rg')?.hasError('required') && funcionarioForm.touched )">Campo
+           obrigatório!</span>
+       </div>
+
+       <div class="mb-3 col-9">
+         <label class="form-label">ID Departamento</label>
+         <select class="form-select" formControlName="departamentoId">
+           <option [value]="dept.id" *ngFor="let dept of departamentos">{{dept.id}} - {{dept.nome}}</option>
+         </select>
+       </div>
+
+       <button type="submit" class="btn btn-success" [disabled]="!funcionarioForm.valid">Salvar</button>
+     </form>
+
+   </div>
+
+   <div class="ms-5 btn btn-primary" (click)="voltar2()">Voltar</div>
 
  </div>
 

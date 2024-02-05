@@ -4,6 +4,8 @@ import { FuncionarioService } from '../services/funcionario.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { funcionario } from '../models/funcionario';
+import { DepartamentoService } from '../services/departamento.service';
+import { departamento } from '../models/departamento';
 
 
 @Component({
@@ -27,16 +29,28 @@ export class FuncionariosComponent {
 
   public funcionarioSelecionado!: funcionario;
 
-  constructor(private data_service: FuncionarioService,
+  public departamentos: departamento[] = [];
+
+  constructor(private data_service2: FuncionarioService,
+    private data_service: DepartamentoService,
     private fb: FormBuilder,
     private modalService: BsModalService) {
     this.createFormFunc();
   }
 
   ngOnInit() {
-    this.data_service.getAllFunc().subscribe({
+    this.data_service2.getAllFunc().subscribe({
       next: (funcionarios) => {
         this.funcionarios = funcionarios;
+      },
+      error: (error) => {
+        this.errorMessage = error;
+      },
+    });
+
+    this.data_service.getAllDept().subscribe({
+      next: (departamento) => {
+        this.departamentos = departamento;
       },
       error: (error) => {
         this.errorMessage = error;
@@ -62,7 +76,7 @@ export class FuncionariosComponent {
   salvarCadastroFunc(funcionario: funcionario) {
     console.log(this.funcionarioForm.value);
     funcionario = this.funcionarioForm.value;
-    this.data_service.postFunc(funcionario).subscribe(
+    this.data_service2.postFunc(funcionario).subscribe(
       () => {
         this.carregarFuncionario();
       },
@@ -84,7 +98,7 @@ export class FuncionariosComponent {
     funcionario = this.funcionarioForm.value;
     funcionario.id = saveId;
 
-    this.data_service.putFunc(funcionario).subscribe(
+    this.data_service2.putFunc(funcionario).subscribe(
       () => {
         this.carregarFuncionario();
       },
@@ -106,7 +120,7 @@ export class FuncionariosComponent {
   excluirFuncionario(funcionario: funcionario) {
     this.indice = 4
     this.modalService.hide();
-    this.data_service.deleteFunc(funcionario.id).subscribe(
+    this.data_service2.deleteFunc(funcionario.id).subscribe(
       () => {
         this.carregarFuncionario();
       },
@@ -128,7 +142,7 @@ export class FuncionariosComponent {
 
   carregarFuncionario() {
 
-    this.data_service.getAllFunc().subscribe({
+    this.data_service2.getAllFunc().subscribe({
       next: (funcionario) => {
         this.funcionarios = funcionario;
       },
